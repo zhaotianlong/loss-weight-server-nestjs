@@ -1,0 +1,32 @@
+@baseUrl = http://localhost:3000/api
+@authToken = {{login.response.body.token}}
+
+### 1. 登录获取 Token
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "your_password"
+}
+
+### 2. 获取当前用户信息 (需要 Auth)
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{authToken}}
+
+### 3. 获取营地列表
+GET {{baseUrl}}/camps
+Authorization: Bearer {{authToken}}
+
+### 4. 获取学员列表
+GET {{baseUrl}}/students
+Authorization: Bearer {{authToken}}
+
+### 5. 获取学员详情 (假设 ID 为 1)
+GET {{baseUrl}}/students/1
+Authorization: Bearer {{authToken}}
+
+### 6. 查看房间与床位状态
+GET {{baseUrl}}/rooms/with-beds-students
+Authorization: Bearer {{authToken}}
